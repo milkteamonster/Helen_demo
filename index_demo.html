@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index_model</title>
+    <style>
+         @import url(https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap);
+        @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .main-header{
+            /* background: linear-gradient(-20deg, #7A62D8, #DE64CB); */
+            background: linear-gradient(-30deg, #9c1d76, #FF859E);
+            /* background: linear-gradient(-20deg, #FF8F93, #FFBF7E); */
+        }
+        .main-header .container{
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        /* .main-header .logo{
+            width: 100px;
+        }
+        .main-header .logo img{
+            width: 100%;
+            vertical-align: middle;
+        } */
+
+        .profile-card__thumb{
+            display: block;
+            padding: 0;
+            margin: 0;
+            width: 10%;
+            background-color: #8E46C4;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .profile-card__thumb img{
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            vertical-align: bottom;
+
+        }
+        .main-header .main-nav{
+            /* display: flex;  transform: translateY()浮動的方式 ①或者這個*/
+            margin: auto;
+            /* ↑剩餘空間分給auto的值↑  */
+
+        }
+        .main-header .main-nav a{
+            display: inline-block;  /* transform: translateY()浮動的方式②或者這個*/
+            text-decoration: none;
+            color: #fff;
+            padding: 5px .9em;
+            position: relative;
+            transform: translateY(0px);
+            transition: .3s;
+        }
+        .main-header .main-nav a:hover {
+            transform: translateY(-3px);
+        }
+        .main-header .main-nav a:after{
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: -5px;
+            height: 0;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+
+        }
+        .main-header .main-nav a:hover:after{
+            left: 0;
+            right: 0;
+
+        }
+
+        .main-header .header-search{
+            display: flex;
+        }
+
+        .main-header .header-search button:focus,
+        .main-header .header-search input:focus{
+            outline: none;
+        }
+
+        .main-header .header-search button,
+        .main-header .header-search input{
+            border: none;
+            background-color: #fff;
+            padding: 5px 10px;
+        }
+
+        .main-header .header-search button{
+            border-radius: 0 200px 200px 0;
+        }
+
+        .main-header .header-search input{
+            border-radius: 200px 0 0 200px;
+        }
+
+        .wrap{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            /* background: linear-gradient(-30deg, #93793d, #a21a9147); */
+            /* background: linear-gradient(-20deg, #f5ccf3, #a21a9147); */
+            background: linear-gradient(30deg, pink, #B484D8);
+            background-color: #eae5ea;
+        }
+        .container{
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item{
+            width: 368px;
+            margin: 20px 15px;
+            display: flex;
+            background-color: rgba(255,255,255, .7);
+            border: 1px solid #888;
+            box-shadow: 0 10px 30px rgba(10, 0, 0, .5);
+            font-family: 'Noto Sans TC', sans-serif;
+
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            background-color: #fff;
+            transition: .5s;
+    }
+        .item .pic{
+            width: 50%;
+        }
+ 
+        .item .pic img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        .item .txt{
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+        }
+
+        .item .txt h2{
+            font-weight: 500;
+            margin-bottom: .4em;
+            font-size: 20px;
+        }
+        .item .txt p{
+            margin-bottom: 20px;
+        }
+        .item .txt .btn{
+            line-height: 1.5em;
+            border: 1px solid #ccc;
+            padding: 0 1em;
+            align-self: flex-end;
+            text-decoration: none;
+            border-radius: 200px;
+            margin-top: auto;
+            color: #aaa;
+        }
+        .item .txt .btn:hover {
+            background-color: #ccc;
+            color: #fff;
+        }
+
+
+        
+        .main-footer .container{
+            display: flex;
+            width: 1200px;
+            margin: auto;
+        }
+        .main-footer{
+            padding: 70px 0 0 ;
+            background: linear-gradient(-20deg, #9c1d76, #FF859E);
+        }
+        .footer-item{
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        .footer-item h4{
+            font-size: 24px;
+            color:#fff;
+            border-bottom: 1px dotted #fff;
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+        .footer-item nav{
+        display: flex;
+        flex-direction: column;
+       }
+       .footer-item nav a{
+        color: #fff;
+        line-height: 1.4;
+        text-decoration: none;
+        padding: 5px 0;
+
+        position: relative;
+        transform: translateY(0px);
+        transition: .3s;
+       }
+       .footer-item nav a:hover{
+        /* color: #39053a; */
+
+        transform: translateY(-3px);
+       }
+
+   
+        .footer-item nav a:after{
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: -5px;
+            height: 0;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+
+        }
+        .footer-item nav a:hover:after{
+            left: 0px;
+            right: 150px;
+
+        }
+
+       .copyright{
+        width: 100%;
+        text-align: center;
+        margin: 70px 0 0 0;
+        padding: 10px 0;
+        background-color: #39053a;
+        /* background-color: #3e5293; */
+        color: #fff;
+       }
+       i{
+        margin-right: 10px;
+       }
+       .footersubs{
+        display: flex;
+        flex-direction: column;
+       }
+       .footersubs form{
+        display: flex;
+        width: 100%;
+        margin: auto 0px;
+       }
+
+
+       .footersubs input[type="text"],
+       .footersubs input[type="submit"]{
+        border: none;
+        padding: 5px 10px;
+       }
+
+       .footersubs input[type="text"]{
+        width: 0;
+        flex-grow: 1;
+       }
+       .footersubs input[type="submit"]{
+        color: #fff;
+        background-color: #39053a;
+       }
+    </style>
+</head>
+<body>
+
+    <div class="main-header">
+        <div class="container">
+            <!-- <a href="#" class="logo">
+                <img src="/img/coca.png" width="100">
+            </a> -->
+
+            <figure class="profile-card__thumb">
+                <img src="img/rabbit.png" alt="Helen's Study"></a>
+            </figure>
+
+            <nav class="main-nav">
+                <a href="#">兔子都能懂系列</a>
+                <a href="#">兔子生存入門系列</a>
+                <a href="#">兔子漂浮系列</a>
+                <a href="#">蘿蔔獵採系列</a>
+                <a href="#">龜兔賽跑系列</a>
+                <a href="#">兔肉烹調系列</a>
+            </nav>
+            <form class="header-search">
+                <input type="search" name="" id="">
+                <button><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        
+    </div>
+
+    <div class="wrap">
+        <div class="container">
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=1">
+                </div>
+                
+                <div class="txt">
+                    <h2>兔子都能懂系列</h2>
+                    <p>教學如此淺顯易懂，就是兔子能懂的生存入門,今天要給各位的內容是要加入會員並開啟小鈴鐺才能觀看</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+                
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=2">
+                </div>
+                <div class="txt">
+                    <h2>兔子生存入門系列</h2>
+                    <p>生存靠賣萌生存靠不斷累積的智慧,有時候還得打好兔際關係....</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=3">
+                </div>
+                <div class="txt">
+                    <h2>兔子漂浮系列</h2>
+                    <p>兔子漂浮技能並非每隻兔子與生俱來,需要經過長期訓練及天賦,外加專業訓練練習500年才得以漂浮</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=4">
+                </div>
+                <div class="txt">
+                    <h2>蘿蔔獵採系列</h2>
+                    <p>兔子從3歲起便要自尋獵採蘿蔔,蘿蔔品種與好壞對兔子本身及兔子家族社會地位有極深影響,一切得不要輸在蘿蔔起跑點的才是兔生贏家</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+                
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=5">
+                </div>
+                <div class="txt">
+                    <h2>龜兔賽跑系列</h2>
+                    <p>古老寓言故事合集,你可能不知道當年龜兔賽跑中,神秘的參加者還有誰,他才是真正贏得最終賽跑獎項的大贏家,歡迎加入會員釐清事實真相</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=6">
+                </div>
+                <div class="txt">
+                    <h2>兔肉烹調系列</h2>
+                    <p>從兔肉採集,兔肉烹調到各種吃法,從北極到南極兔子品種等都有詳細介紹,歡迎加入會員共同揭開這層神祕的面紗</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="main-footer">
+            <div class="container">
+                <div class="footer-item">
+                    <h4>關於兔子課程</h4>
+                    <nav>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>課程目標</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>辦學理念</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>課程宗旨</a>
+                    </nav>
+                </div>
+                <div class="footer-item">
+                    <h4>課程列表</h4>
+                    <nav>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>兔子入門班</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>RWD網頁深入理解</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>CSS互動動畫設計</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>Bootstrap框架實務</a>
+                    </nav></div>
+                <div class="footer-item">
+                    <h4>服務項目</h4>
+                    <nav>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>建置顧問</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>設計建置</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>兔生規劃</a>
+                        <a href="#"><i class="fa fa-bolt" aria-hidden="true"></i>企業教育訓練</a>
+                    </nav>
+                </div>
+                <div class="footer-item footersubs">
+                    <h4>訂閱電子報</h4>
+                    <form>
+                        <input type="text" name="">
+                        <input type="submit" value="訂閱">
+                    </form>
+                </div>
+    
+            </div>
+            <div class="copyright">
+                copyright &copy; 2022 Rabbit is Good All rights reserved
+            </div>
+        </div>
+
+        
+    </div>
+
+ 
+</body>
+</html>
